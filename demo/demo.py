@@ -45,7 +45,7 @@ def get_parser():
     parser.add_argument("--video-input", help="Path to video file.")
     parser.add_argument(
         "--input",
-        default="TestImage",
+        default="../TestImage",
         nargs="+",
         help="A list of space separated input images; "
         "or a single glob pattern such as 'directory/*.jpg'",
@@ -87,12 +87,13 @@ if __name__ == "__main__":
         if len(args.input) == 1:
             args.input = glob.glob(os.path.expanduser(args.input[0]))
             assert args.input, "The input path(s) was not found"
-        for path in tqdm.tqdm(args.input, disable=not args.output):
-            print("path path path: ",path) 
+        #for path in tqdm.tqdm(args.input, disable=not args.output):
+        for path in tqdm.tqdm(glob.glob(os.path.join(args.input, "*.jpg"))):
             # use PIL, to be consistent with evaluation
             img = read_image(path, format="BGR")
             start_time = time.time()
             predictions, visualized_output = demo.run_on_image(img)
+            print("predictions : ",predictions["instances"])
             logger.info(
                 "{}: {} in {:.2f}s".format(
                     path,
@@ -102,7 +103,6 @@ if __name__ == "__main__":
                     time.time() - start_time,
                 )
             )
-
             if args.output:
                 if os.path.isdir(args.output):
                     assert os.path.isdir(args.output), args.output
