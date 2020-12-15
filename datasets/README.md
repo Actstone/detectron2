@@ -11,7 +11,7 @@ The datasets are assumed to exist in a directory specified by the environment va
 `DETECTRON2_DATASETS`.
 Under this directory, detectron2 will look for datasets in the structure described below, if needed.
 ```
-$DETECTRON2_DATASETS/
+$DETECTRON2_DATASETS/ 
   coco/
   lvis/
   cityscapes/
