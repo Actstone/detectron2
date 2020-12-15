@@ -41,18 +41,18 @@ def get_parser():
         metavar="FILE",
         help="path to config file",
     )
-    parser.add_argument("--webcam", action="store_true", help="Take inputs from webcam.")
+    parser.add_argument("--webcam", default=True,action="store_true", help="Take inputs from webcam.")
     parser.add_argument("--video-input", help="Path to video file.")
     parser.add_argument(
         "--input",
-        default="../TestImage",
+        # default="../TestImage",
         nargs="+",
         help="A list of space separated input images; "
         "or a single glob pattern such as 'directory/*.jpg'",
     )
     parser.add_argument(
         "--output",
-        default="../TestOutput",
+        # default="../TestOutput",
         help="A file or directory to save output visualizations. "
         "If not given, will show output in an OpenCV window.",
     )
